@@ -4,25 +4,16 @@ import CopyToClipboard from "react-copy-to-clipboard";
 
 const BannerForm = () => {
   const [formData, setFormData] = useState({
-    imageUrl:
-      "https://www.litmos.com/wp-content/uploads/2022/12/hero-banner-optim.jpg",
-    fontColor: "#FFFFFF",
-    fontColor2: "#FFFFFF",
-    fontColor3: "#8333ff",
-    fontSize: "45",
-    fontSize2: "30",
     text: "Create. Curate. Connect.",
     text2: "eLearning Made Easy.",
     imageUrlBanner:
-      "https://www.litmos.com/wp-content/uploads/2022/12/cta-banner-optim.png",
-    box1img: "fa-users",
+      "https://i.imgur.com/HrPDcjx.jpg",
     box1headline: "New Employee Training",
     box1text:
-      "Tune in to instructor led workshops. If you can't make it live, check the recordings!",
-    box2img: "fa-book",
+      "/courses/event/LearnerSession",
     box2headline: "Winners circle",
     box2text:
-      "Achievements and leaderboard. See who's at the top of the leaderboard.",
+      "/achievements",
   });
 
   const [previewCode, setPreviewCode] = useState("");
@@ -52,14 +43,16 @@ const BannerForm = () => {
 .banner {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: flex-start;
   padding: 3em;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("${imageUrlBanner}") no-repeat center center;
   background-size: cover;
-  height: 500px;
 }
+  .banner,div#htmlBanner{
+    height: 500px;
+  }
 .banner img {
   max-height: 75px;
   -webkit-filter: drop-shadow(2px 3px 5px rgb(0 0 0 / 20%));
@@ -71,7 +64,6 @@ const BannerForm = () => {
 .banner h1,
 .banner p {
   font-family: "Poppins", sans-serif;
-  font-weight:300;
   color: white;
   text-shadow: 2px 3px 5px rgb(0 0 0 / 20%);
 }
@@ -84,7 +76,6 @@ const BannerForm = () => {
 }
 .banner .btn-default {
   margin-left: 1em;
-  color:white;
 }
   </style>
   <div class="banner">
@@ -106,16 +97,6 @@ const BannerForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleColorChange = (color) => {
-    setFormData({ ...formData, fontColor: color.hex });
-  };
-
-  const handleColorChange2 = (color) => {
-    setFormData({ ...formData, fontColor2: color.hex });
-  };
-  const handleColorChange3 = (color) => {
-    setFormData({ ...formData, fontColor3: color.hex });
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
     generatePreviewCode();
@@ -137,12 +118,14 @@ const BannerForm = () => {
   .banner {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: flex-start;
     padding: 3em;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
       url("${imageUrlBanner}") no-repeat center center;
-    background-size: cover;
+    background-size: cover; 
+  }
+  .banner,div#htmlBanner{
     height: 500px;
   }
   .banner img {
@@ -156,7 +139,6 @@ const BannerForm = () => {
   .banner h1,
   .banner p {
     font-family: "Poppins", sans-serif;
-    font-weight:300;
     color: white;
     text-shadow: 2px 3px 5px rgb(0 0 0 / 20%);
   }
@@ -169,7 +151,6 @@ const BannerForm = () => {
   }
   .banner .btn-default {
     margin-left: 1em;
-    color:white;
   }
     </style>
     <div class="banner">
@@ -190,7 +171,6 @@ const BannerForm = () => {
       <h1 className="display-1">Banner Tool</h1>
       <hr />
       <form onSubmit={handleSubmit} className="row">
-        <h3>Banner Styles</h3>
         <div className="col-md-4">
           <div className="mb-4">
             <label htmlFor="imageUrlBanner">Banner Background Image URL:</label>
@@ -226,11 +206,9 @@ const BannerForm = () => {
             />
           </div>
         </div>
-        <hr />
-        <h3>Box Styles</h3>
         <div className="col-md-4">
           <div className="mb-4">
-            <label htmlFor="text">Box 1 Headline:</label>
+            <label htmlFor="text">Button 1 Text:</label>
             <input
               type="text"
               name="box1headline"
@@ -241,7 +219,20 @@ const BannerForm = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="text">Box 2 Headline:</label>
+            <label htmlFor="text">Button 1 URL:</label>
+            <input
+              type="text"
+              name="box1text"
+              value={formData.box1text}
+              onChange={handleChange}
+              className="form-control"
+              id="box1text"
+            />
+          </div>
+        </div>
+        <div className="col-md-4">
+          <div className="mb-4">
+            <label htmlFor="text">Button 2 Text:</label>
             <input
               type="text"
               name="box2headline"
@@ -252,7 +243,7 @@ const BannerForm = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="text">Box 2 Text:</label>
+            <label htmlFor="text">Button 2 URL:</label>
             <input
               type="text"
               name="box2text"
