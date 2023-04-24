@@ -36,161 +36,65 @@ const BannerForm = () => {
 
   const generatePreviewCode = () => {
     const {
-      imageUrl,
-      fontColor,
-      fontColor2,
-      fontColor3,
-      fontSize,
-      fontSize2,
       text,
       text2,
-      box1img,
       box1headline,
       box1text,
-      box2img,
       box2headline,
       box2text,
       imageUrlBanner,
     } = formData;
     const code = `<style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
-  
-    .banner {
-      position: relative;
-      background-image: url('${imageUrl}');
-      background-size: cover;
-      background-position: center;
-      height: 400px;
-    }
-  
-    .banner-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.4);
-    }
-  
-    .banner-content {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      height: 100%;
-      padding: 20px;
-    }
-  
-    .banner-image {
-      max-height: 200px;
-      max-width: 200px;
-      margin-right: 20px;
-    }
-  
-    .banner-text h1,
-    .banner-text p {
-      font-family: 'Poppins', sans-serif;
-      color: ${fontColor};
-      margin: 0;
-      text-shadow: 2px 4px 3px rgba(0, 0, 0, .3);
-    }
-  
-    .banner-text h1 {
-      font-size: ${fontSize}px;
-    }
-  
-    .banner-text p {
-      font-size: ${fontSize2}px;
-    }
-  
-    .banner-boxes {
-      display: flex;
-      justify-content: center;
-      gap: 1em;
-      padding: 1em 0;
-      background: white;
-    }
-  
-    .banner-boxes>div {
-      background: ${fontColor3};
-      padding: 2em;
-      width: 100%;
-    }
-  
-    .banner-boxes div i {
-      color: ${fontColor2};
-      padding-right: 0.5em;
-    }
-  
-    .banner-boxes div h3,
-    .banner-boxes div p {
-      color: ${fontColor2};
-      margin: 0.3em;
-    }
-  
-    .banner-boxes div .btn-sm {
-      background:${fontColor2};
-      color: ${fontColor3};
-      border: none;
-    }
-  
-    /* Mobile devices */
-    @media (max-width: 767px) {
-      .banner {
-        height: 250px;
-      }
-  
-      .banner-text h1 {
-        font-size: 30px;
-      }
-  
-      .banner-text p {
-        font-size: 14px;
-      }
-  
-      .banner,
-      .banner-boxes {
-        flex-wrap: wrap;
-      }
-    }
+    /* --------------------------------- */
+/* DASHBOARD BANNER */
+/* --------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+.banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding: 3em;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("${imageUrlBanner}") no-repeat center center;
+  background-size: cover;
+  height: 500px;
+}
+.banner img {
+  max-height: 75px;
+  -webkit-filter: drop-shadow(2px 3px 5px rgb(0 0 0 / 20%));
+    filter: drop-shadow(2px 3px 5px rgb(0 0 0 / 20%));
+}
+.banner .banner-text {
+  max-width: 75%;
+}
+.banner h1,
+.banner p {
+  font-family: "Poppins", sans-serif;
+  font-weight:300;
+  color: white;
+  text-shadow: 2px 3px 5px rgb(0 0 0 / 20%);
+}
+.banner h1 {
+  font-size: 4em;
+}
+.banner p {
+  font-size: 1.5em;
+  font-weight: 300;
+}
+.banner .btn-default {
+  margin-left: 1em;
+  color:white;
+}
   </style>
-  
   <div class="banner">
-    <div class="banner-overlay"></div>
-    <div class="banner-content">
-      <img src="${imageUrlBanner}" alt="Your image description"
-        class="banner-image img-responsive hidden-sm hidden-xs">
-      <div class="banner-text">
-        <h1>${text}</h1>
-        <p>${text2}</p>
-      </div>
+    <div class="banner-text">
+      <h1>${text}</h1>
+      <p>${text2}</p>
     </div>
-  </div>
-  
-  <div class="banner-boxes">
-    <div>
-      <!-- BANNER BOX 1 ICON -->
-      <i class='fas ${box1img} fa-5x pull-left'></i>
-      <div>
-        <!-- BANNER BOX 1 HEADER -->
-        <h3>${box1headline}</h3>
-        <!-- BANNER BOX 1 SUBHEADER -->
-        <p>${box1text}</p>
-        <!-- BANNER BOX 1 BUTTON -->
-        <a class="btn btn-sm btn-secondary" href="/courses/event/LearnerSession">Learn More</a>
-      </div>
-    </div>
-    <div>
-      <!-- BANNER BOX 2 ICON -->
-      <i class='fas ${box2img} fa-5x pull-left'></i>
-      <div>
-        <!-- BANNER BOX 2 SUBHEADER -->
-        <h3>${box2headline}</h3>
-        <!-- BANNER BOX 2 HEADER -->
-        <p>${box2text}</p>
-        <!-- BANNER BOX 2 BUTTON -->
-        <a class="btn btn-sm btn-secondary" href="/achievements">Learn More</a>
-      </div>
+    <div class="banner-buttons">
+      <a class="btn btn-lg btn-primary" href="${box1text}">${box1headline}</a>
+      <a class="btn btn-lg btn-default" href="${box2text}">${box2headline}</a>
     </div>
   </div>`;
     setPreviewCode(code);
@@ -216,162 +120,66 @@ const BannerForm = () => {
     e.preventDefault();
     generatePreviewCode();
     const {
-      imageUrl,
-      fontColor,
-      fontColor2,
-      fontColor3,
-      fontSize,
-      fontSize2,
       text,
       text2,
-      box1img,
       box1headline,
       box1text,
-      box2img,
       box2headline,
       box2text,
       imageUrlBanner,
     } = formData;
     setCodeSnippet(
       `<style>
-      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
-    
-      .banner {
-        position: relative;
-        background-image: url('${imageUrl}');
-        background-size: cover;
-        background-position: center;
-        height: 400px;
-      }
-    
-      .banner-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.4);
-      }
-    
-      .banner-content {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        align-items: center;
-        height: 100%;
-        padding: 20px;
-      }
-    
-      .banner-image {
-        max-height: 200px;
-        max-width: 200px;
-        margin-right: 20px;
-      }
-    
-      .banner-text h1,
-      .banner-text p {
-        font-family: 'Poppins', sans-serif;
-        color: ${fontColor};
-        margin: 0;
-        text-shadow: 2px 4px 3px rgba(0, 0, 0, .3);
-      }
-    
-      .banner-text h1 {
-        font-size: ${fontSize}px;
-      }
-    
-      .banner-text p {
-        font-size: ${fontSize2}px;
-      }
-    
-      .banner-boxes {
-        display: flex;
-        justify-content: center;
-        gap: 1em;
-        padding: 1em 0;
-        background: white;
-      }
-    
-      .banner-boxes>div {
-        background: ${fontColor3};
-        padding: 2em;
-        width: 100%;
-      }
-    
-      .banner-boxes div i {
-        color: ${fontColor2};
-        padding-right: 0.5em;
-      }
-    
-      .banner-boxes div h3,
-      .banner-boxes div p {
-        color: ${fontColor2};
-        margin: 0.3em;
-      }
-    
-      .banner-boxes div .btn-sm {
-        background:${fontColor2};
-        color: ${fontColor3};
-        border: none;
-      }
-    
-      /* Mobile devices */
-      @media (max-width: 767px) {
-        .banner {
-          height: 250px;
-        }
-    
-        .banner-text h1 {
-          font-size: 30px;
-        }
-    
-        .banner-text p {
-          font-size: 14px;
-        }
-    
-        .banner,
-        .banner-boxes {
-          flex-wrap: wrap;
-        }
-      }
+      /* --------------------------------- */
+  /* DASHBOARD BANNER */
+  /* --------------------------------- */
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+  .banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding: 3em;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("${imageUrlBanner}") no-repeat center center;
+    background-size: cover;
+    height: 500px;
+  }
+  .banner img {
+    max-height: 75px;
+    -webkit-filter: drop-shadow(2px 3px 5px rgb(0 0 0 / 20%));
+      filter: drop-shadow(2px 3px 5px rgb(0 0 0 / 20%));
+  }
+  .banner .banner-text {
+    max-width: 75%;
+  }
+  .banner h1,
+  .banner p {
+    font-family: "Poppins", sans-serif;
+    font-weight:300;
+    color: white;
+    text-shadow: 2px 3px 5px rgb(0 0 0 / 20%);
+  }
+  .banner h1 {
+    font-size: 4em;
+  }
+  .banner p {
+    font-size: 1.5em;
+    font-weight: 300;
+  }
+  .banner .btn-default {
+    margin-left: 1em;
+    color:white;
+  }
     </style>
-    
     <div class="banner">
-      <div class="banner-overlay"></div>
-      <div class="banner-content">
-        <img src="${imageUrlBanner}" alt="Your image description"
-          class="banner-image img-responsive hidden-sm hidden-xs">
-        <div class="banner-text">
-          <h1>${text}</h1>
-          <p>${text2}</p>
-        </div>
+      <div class="banner-text">
+        <h1>${text}</h1>
+        <p>${text2}</p>
       </div>
-    </div>
-    
-    <div class="banner-boxes">
-      <div>
-        <!-- BANNER BOX 1 ICON -->
-        <i class="fas ${box1img} fa-5x pull-left"></i>
-        <div>
-          <!-- BANNER BOX 1 HEADER -->
-          <h3>${box1headline}</h3>
-          <!-- BANNER BOX 1 SUBHEADER -->
-          <p>${box1text}</p>
-          <!-- BANNER BOX 1 BUTTON -->
-          <a class="btn btn-sm btn-secondary" href="/courses/event/LearnerSession">Learn More</a>
-        </div>
-      </div>
-      <div>
-        <!-- BANNER BOX 2 ICON -->
-        <i class="fas ${box2img} fa-5x pull-left"></i>
-        <div>
-          <!-- BANNER BOX 2 SUBHEADER -->
-          <h3>${box2headline}</h3>
-          <!-- BANNER BOX 2 HEADER -->
-          <p>${box2text}</p>
-          <!-- BANNER BOX 2 BUTTON -->
-          <a class="btn btn-sm btn-secondary" href="/achievements">Learn More</a>
-        </div>
+      <div class="banner-buttons">
+        <a class="btn btn-lg btn-primary" href="${box1text}">${box1headline}</a>
+        <a class="btn btn-lg btn-default" href="${box2text}">${box2headline}</a>
       </div>
     </div>`
     );
@@ -385,14 +193,14 @@ const BannerForm = () => {
         <h3>Banner Styles</h3>
         <div className="col-md-4">
           <div className="mb-4">
-            <label htmlFor="imageUrl">Banner Background Image URL:</label>
+            <label htmlFor="imageUrlBanner">Banner Background Image URL:</label>
             <input
               type="text"
-              name="imageUrl"
-              value={formData.imageUrl}
+              name="imageUrlBanner"
+              value={formData.imageUrlBanner}
               onChange={handleChange}
               className="form-control"
-              id="imageUrl"
+              id="imageUrlBanner"
             />
           </div>
           <div className="mb-4">
@@ -418,70 +226,9 @@ const BannerForm = () => {
             />
           </div>
         </div>
-        <div className="col-md-4">
-          <div className="mb-4">
-            <label htmlFor="imageUrlBanner">Banner Image URL:</label>
-            <input
-              type="text"
-              name="imageUrlBanner"
-              value={formData.imageUrlBanner}
-              onChange={handleChange}
-              className="form-control"
-              id="imageUrlBanner"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="fontSize">Banner Headline Font Size:</label>
-            <input
-              type="number"
-              name="fontSize"
-              value={formData.fontSize}
-              onChange={handleChange}
-              className="form-control"
-              id="fontSize"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="fontSize">Banner Sub-Headline Font Size:</label>
-            <input
-              type="number"
-              name="fontSize2"
-              value={formData.fontSize2}
-              onChange={handleChange}
-              className="form-control"
-              id="fontSize2"
-            />
-          </div>
-        </div>
-        <div className="col-md-4">
-          <div className="mb-4">
-            <label htmlFor="fontColor">Banner Font Color:</label>
-            <TwitterPicker
-              color={formData.fontColor}
-              onChangeComplete={handleColorChange}
-            />
-          </div>
-        </div>
         <hr />
         <h3>Box Styles</h3>
         <div className="col-md-4">
-          <div className="mb-4">
-            <label htmlFor="text">Box 1 Icon:</label>
-            <input
-              type="text"
-              name="box1img"
-              value={formData.box1img}
-              onChange={handleChange}
-              className="form-control"
-              id="box1img"
-            />
-            <div id="emailHelp" className="form-text">
-              Icon choices at{" "}
-              <a target="blank" href="https://fontawesome.com/v5/search">
-                FontAwesome
-              </a>
-            </div>
-          </div>
           <div className="mb-4">
             <label htmlFor="text">Box 1 Headline:</label>
             <input
@@ -492,36 +239,6 @@ const BannerForm = () => {
               className="form-control"
               id="box1headline"
             />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="text">Box 1 Text:</label>
-            <input
-              type="text"
-              name="box1text"
-              value={formData.box1text}
-              onChange={handleChange}
-              className="form-control"
-              id="box1text"
-            />
-          </div>
-        </div>
-        <div className="col-md-4">
-          <div className="mb-4">
-            <label htmlFor="text">Box 2 Icon:</label>
-            <input
-              type="text"
-              name="box2img"
-              value={formData.box2img}
-              onChange={handleChange}
-              className="form-control"
-              id="box2img"
-            />
-            <div id="emailHelp" className="form-text">
-              Icon choices at{" "}
-              <a target="blank" href="https://fontawesome.com/v5/search">
-                FontAwesome
-              </a>
-            </div>
           </div>
           <div className="mb-4">
             <label htmlFor="text">Box 2 Headline:</label>
@@ -543,22 +260,6 @@ const BannerForm = () => {
               onChange={handleChange}
               className="form-control"
               id="box2text"
-            />
-          </div>
-        </div>
-        <div className="col-md-4">
-          <div className="mb-4">
-            <label htmlFor="fontColor2">Box Font Color:</label>
-            <TwitterPicker
-              color={formData.fontColor2}
-              onChangeComplete={handleColorChange2}
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="fontColor3">Box Background Color:</label>
-            <TwitterPicker
-              color={formData.fontColor3}
-              onChangeComplete={handleColorChange3}
             />
           </div>
         </div>
